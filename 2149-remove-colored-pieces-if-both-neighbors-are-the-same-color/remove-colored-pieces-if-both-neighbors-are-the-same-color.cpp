@@ -1,19 +1,14 @@
 class Solution {
 public:
     bool winnerOfGame(string colors) {
-        int A=0,B=0;
-        string t;
         if(colors.size()<3) return false;
+        int ac=0,bc=0;
         for(int i=0;i<colors.size()-2;i++){
-                t=colors.substr(i,3);
-                if(t=="AAA")
-                    A++;
-                else if(t=="BBB"){
-                    B++;
-                }
-            }
-        if(A>B) 
-            return true;
-            return false;
+            if(colors[i]=='A' && colors[i+1]=='A' && colors[i+2]=='A')
+                ac++;
+            else if(colors[i]=='B' && colors[i+1]=='B' && colors[i+2]=='B')
+                bc++;
         }
+        return ac>bc;
+    }
 };
