@@ -1,10 +1,10 @@
 class Solution {
 public:
     public:
-    std::vector<std::vector<int>> imageSmoother(std::vector<std::vector<int>>& img) {
+    vector<vector<int>> imageSmoother(vector<vector<int>>& img) {
         int m = img.size();
         int n = img[0].size();
-        std::vector<std::vector<int>> res(m, std::vector<int>(n, 0));
+        vector<vector<int>> res(m,vector<int>(n, 0));
 
         for (int i = 0; i < m; ++i) {
             for (int j = 0; j < n; ++j) {
@@ -16,7 +16,7 @@ public:
     }
 
 private:
-    int smoothen(const std::vector<std::vector<int>>& img, int x, int y) {
+    int smoothen(vector<vector<int>>& img, int x, int y) {
         int m = img.size();
         int n = img[0].size();
         int sum = 0;
