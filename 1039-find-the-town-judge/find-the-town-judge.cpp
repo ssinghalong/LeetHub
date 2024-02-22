@@ -1,18 +1,14 @@
 class Solution {
 public:
     int findJudge(int n, vector<vector<int>>& trust) {
-        vector<pair<bool,int>> vec(n,{true,0});
+        vector<int> count(n,0);
         for(auto it:trust){
-            vec[it[0]-1].first=false;
-            vec[it[1]-1].second++;
+            count[it[0]-1]--;
+            count[it[1]-1]++;
         }
-        int ans = -1;
         for(int i=0;i<n;i++){
-            auto it = vec[i];
-            if(it.first==true && it.second==n-1){
-                ans=i+1;
-            }
+            if(count[i]==n-1) return i+1;
         }
-        return ans;
+        return -1;
     }
 };
