@@ -5,11 +5,8 @@ public class Solution {
         int ma=0;
         while(l<r){  
             int water=Math.Min(height[l],height[r])*(r-l);
-            Console.WriteLine(water);
-            if(ma<water){
-                ma=water;
-                // Console.WriteLine(ma);
-            }
+            // Console.WriteLine(water);
+            ma=Math.Max(ma,water);
 
             if(height[l]>height[r]){
                 r--;
