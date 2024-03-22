@@ -4,16 +4,9 @@ public class Solution {
         int r=height.Length-1;
         int ma=0;
         while(l<r){  
-            int water=Math.Min(height[l],height[r])*(r-l);
-            // Console.WriteLine(water);
-            ma=Math.Max(ma,water);
-
-            if(height[l]>height[r]){
-                r--;
-            }
-            else{
-                l++;
-            }
+            ma=Math.Max(ma,Math.Min(height[l],height[r])*(r-l));
+            if(height[l]>height[r])r--;
+            else l++;
         }
         return ma;
     }
