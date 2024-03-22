@@ -10,19 +10,21 @@
  */
 class Solution {
 public:
-    bool isPal(vector<int> vec){
-        for(int i=0;i<vec.size();i++){
-            if(vec[i]!=vec[vec.size()-1-i]) return false;
-        }
-        return true;
-    }
     bool isPalindrome(ListNode* head) {
-        vector<int> vec;
-        ListNode* temp=head;
-        while(temp){
-            vec.push_back(temp->val);
-            temp=temp->next;
+        stack<int> st;
+        ListNode *slow=head,*fast=head;
+        while(fast && fast->next){
+            st.push(slow->val);
+            fast=fast->next->next;
+            slow=slow->next;
         }
-        return isPal(vec);
+        if(fast!=NULL){
+            slow=slow->next;
+        }
+        while(slow!=NULL && st.top()==slow->val){
+            slow=slow->next;
+            st.pop();
+        }
+        return st.empty();
     }
 };
