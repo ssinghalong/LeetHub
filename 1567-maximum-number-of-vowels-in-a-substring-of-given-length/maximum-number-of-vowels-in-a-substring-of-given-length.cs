@@ -15,6 +15,7 @@ public class Solution {
             }
             ma=Math.Max(count,ma);
         }
+        GC.Collect();
         return ma;
     }
     public bool isVow(char a){
