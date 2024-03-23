@@ -5,6 +5,7 @@ public class Solution {
             su+=gain[i];
             ma=Math.Max(ma,su);
         }
+        GC.Collect();
         return ma;
     }
 }
