@@ -13,7 +13,6 @@ public class Solution {
                 }
                 r++;
             }
-            Console.WriteLine();
             ma=Math.Max(ma,r-l);
             while(l<n && nums[l]==1){
                 l++;
@@ -23,6 +22,7 @@ public class Solution {
                 l++;
             }
         }
+        GC.Collect();
         return ma;
     }
 }
