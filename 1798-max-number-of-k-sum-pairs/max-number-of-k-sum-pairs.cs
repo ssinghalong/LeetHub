@@ -1,22 +1,18 @@
 public class Solution {
     public int MaxOperations(int[] nums, int k) {
-        var ht = new Hashtable();
-        int count=0;
-        for(int i=0;i<nums.Length;i++){
-            if(ht.ContainsKey(k-nums[i])){
+        Array.Sort(nums);
+        int l=0,r=nums.Length-1,count=0;
+        while(l<r){
+            if(nums[l]+nums[r]==k){
+                l++;
+                r--;
                 count++;
-                ht[k-nums[i]]=(int)ht[k-nums[i]]-1;
-                if((int)ht[k-nums[i]]==0){
-                    ht.Remove(k-nums[i]);
-                }
+            }
+            else if(nums[l]+nums[r]>k){
+                r--;
             }
             else{
-                if(ht.ContainsKey(nums[i])){
-                    ht[nums[i]]=(int)ht[nums[i]]+1;
-                }
-                else{
-                    ht.Add(nums[i],1);
-                }
+                l++;
             }
         }
         return count;
