@@ -19,6 +19,7 @@ public class Solution {
                 l++;
             }
         }
+        GC.Collect();
         return ma-1;
     }
 }
