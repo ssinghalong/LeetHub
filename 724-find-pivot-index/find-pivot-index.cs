@@ -1,16 +1,18 @@
 public class Solution {
     public int PivotIndex(int[] nums) {
-        int su=0,temp=0;
         int n = nums.Length;
-        for(int i=0;i<n;i++){
-            su+=nums[i];
+        int[] sumLeft = new int[n];
+        int[] sumRight = new int[n];
+
+        sumLeft[0] = 0;
+        sumRight[n-1] = 0;
+        for (int i = 1; i < n; i++){
+            sumLeft[i] = sumLeft[i-1] + nums[i-1];
+            sumRight[n-i-1] = sumRight[n-i] + nums[n-i];
         }
-        for(int i=0;i<n;i++){
-            su-=nums[i];
-            if(temp==su) return i;
-            temp+=nums[i];
+        for (int i = 0; i < n; i++){
+            if (sumLeft[i] == sumRight[i]) return i;
         }
-        GC.Collect();
         return -1;
     }
 }
