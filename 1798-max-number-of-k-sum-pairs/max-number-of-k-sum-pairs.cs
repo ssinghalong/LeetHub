@@ -15,6 +15,7 @@ public class Solution {
                 l++;
             }
         }
+        GC.Collect();
         return count;
     }
 }
