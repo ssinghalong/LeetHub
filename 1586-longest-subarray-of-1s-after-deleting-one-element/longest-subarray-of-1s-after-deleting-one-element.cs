@@ -14,6 +14,7 @@ public class Solution {
             }
             r++;
         }
+        GC.Collect();
         return r-l-1;
     }
 }
