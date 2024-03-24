@@ -1,13 +1,18 @@
 public class Solution {
     public int FindDuplicate(int[] nums) {
-        var hs = new HashSet<int> ();
-        GC.Collect();
-        for(int i=0;i<nums.Length;i++){
-            if(hs.Contains(nums[i])){
-                return nums[i];
-            }
-            hs.Add(nums[i]);
+        int slow = nums[0];
+        int fast = nums[nums[0]];
+
+        while(slow!=fast){
+            fast=nums[nums[fast]];
+            slow=nums[slow];
         }
-        return -1;
+        fast=0;
+        while(slow!=fast){
+            fast=nums[fast];
+            slow=nums[slow];
+        }
+        GC.Collect();
+        return slow;
     }
 }
