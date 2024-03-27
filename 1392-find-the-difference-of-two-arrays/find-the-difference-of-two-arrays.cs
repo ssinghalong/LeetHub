@@ -1,41 +1,46 @@
 public class Solution {
     public IList<IList<int>> FindDifference(int[] nums1, int[] nums2) {
-        // IList<int> distinctNums1 = new List<int>();
-        //     IList<int> distinctNums2 = new List<int>();
-        //     foreach (int i in nums1)
+        // var ans = new List<IList<int>>();
+        // HashSet<int> hs1 = new(nums1);
+        // HashSet<int> hs2 = new(nums2);
+        // List<int> temp1 = new();
+        // foreach(int num in hs1)
+        // {
+        //     if(!hs2.Contains(num))
         //     {
-        //         if(Array.IndexOf(nums2, i) == -1 && !distinctNums1.Contains(i))
-        //         {
-        //             distinctNums1.Add(i);
-        //         }
+        //         temp1.Add(num);
         //     }
-        //     foreach (int i in nums2)
+        // }
+        // ans.Add(temp1);
+        // temp1 = new();
+        // foreach(int num in hs2)
+        // {
+        //     if(!hs1.Contains(num))
         //     {
-        //         if (Array.IndexOf(nums1, i) == -1 && !distinctNums2.Contains(i))
-        //         {
-        //             distinctNums2.Add(i);
-        //         }
+        //         temp1.Add(num);
         //     }
-        //     var result = new IList<IList<int>>();
-        //     result.Add(distinctNums1);
-        //     result.Add(distinctNums2);
-        //     return result;
-        var dist1 = new List<int>();
-        var dist2 = new List<int>();
-        foreach(var i in nums1){
-            if(Array.IndexOf(nums2,i)==-1 && !dist1.Contains(i)){
-                dist1.Add(i);
+        // }
+        // ans.Add(temp1);
+        // return ans;
+        var ans = new List<IList<int>> ();
+        HashSet<int> hs1 = new (nums1);
+        HashSet<int> hs2 = new (nums2);
+        var temp1 = new List<int>();
+        
+        foreach(var i in hs1){
+            if(!hs2.Contains(i)){
+                temp1.Add(i);
             }
         }
-        foreach(var i in nums2){
-            if(Array.IndexOf(nums1,i)==-1 && !dist2.Contains(i)){
-                dist2.Add(i);
+        ans.Add(temp1);
+        temp1 = new();
+        foreach(var i in hs2){
+            if(!hs1.Contains(i)){
+                temp1.Add(i);
             }
         }
-        var result = new List<IList<int>>();
-        result.Add(dist1);
-        result.Add(dist2);
+        ans.Add(temp1);
         GC.Collect();
-        return result;
+        return ans;
     }
 }
