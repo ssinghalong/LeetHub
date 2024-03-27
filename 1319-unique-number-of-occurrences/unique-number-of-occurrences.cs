@@ -9,16 +9,8 @@ public class Solution {
                 dic[i]=1;
             }
         }
+        HashSet<int> hs = new (dic.Values);
         GC.Collect();
-        var hs = new HashSet<int> ();
-        foreach(var i in dic){
-            if(hs.Contains(i.Value)){
-                return false;
-            }
-            else{
-                hs.Add(i.Value);
-            }
-        }
-        return true;
+        return dic.Count==hs.Count;
     }
 }
