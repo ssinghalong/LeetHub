@@ -1,20 +1,18 @@
 public class Solution {
     public int NumSubarrayProductLessThanK(int[] nums, int k) {
+        GC.Collect();
         if(k<=1) return 0;
-        int prod=1;
-        int n=nums.Length;
-        int l=0,r=0;
-        int count=0;
+        int p=1,n=nums.Length,l=0,r=0,c=0;
         while(r<n){
-            prod*=nums[r];
-            while(prod>=k){
-                prod/=nums[l];
+            p*=nums[r];
+            while(p>=k){
+                p/=nums[l];
                 l++;
             }
-            count+=r-l+1;
+            c+=r-l+1;
             r++;
         }
-        GC.Collect();
-        return count;
+        
+        return c;
     }
 }
