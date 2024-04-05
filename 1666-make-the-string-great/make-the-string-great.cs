@@ -14,6 +14,7 @@ public class Solution {
             ans=st.Peek()+ans;
             st.Pop();
         }
+        GC.Collect();
         return ans;
     }
 }
