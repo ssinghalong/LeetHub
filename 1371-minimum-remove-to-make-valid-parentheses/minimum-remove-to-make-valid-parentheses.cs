@@ -1,27 +1,39 @@
 public class Solution {
     public string MinRemoveToMakeValid(string s) {
-        int count=0;
-        var res = new StringBuilder();
-        foreach(char c in s){
-            if(c=='('){
-                count++;
+        StringBuilder builder = new();
+        bool[] includeChar = new bool[s.Length];
+        Stack<int> stack = new();
+        
+        for (int i=0; i<s.Length; i++)
+        {
+            if (s[i] == '(')
+            {
+                stack.Push(i);
             }
-            else if(c==')'){
-                if(count==0) continue;
-                count--;
+            else if (s[i] == ')')
+            {
+                if (stack.Count > 0)
+                {
+                    includeChar[stack.Peek()] = true;
+                    includeChar[i] = true;
+                    stack.Pop();
+                }
             }
-            res.Append(c);
+            else
+            {
+                includeChar[i] = true;
+            }
+            
         }
-        var ans = new StringBuilder();
-        for(int i=res.Length-1;i>=0;i--){
-            Console.WriteLine(count);
-            if(res[i]=='(' && count>0){
-                count--;
-                continue;
+        
+        for (int i=0; i<s.Length; i++)
+        {
+            if (includeChar[i])
+            {
+                builder.Append(s[i]);
             }
-            ans.Insert(0,res[i]);
         }
         GC.Collect();
-        return ans.ToString();
+        return builder.ToString();
     }
 }
