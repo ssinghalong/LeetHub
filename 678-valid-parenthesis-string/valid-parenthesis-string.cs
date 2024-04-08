@@ -1,7 +1,8 @@
 public class Solution {
     public bool CheckValidString(string s) {
         int n = s.Length;
-        int le=0,re=0,st=0;
+        int le=0,st=0;
+        int rle=0,rst=0;
         for(int i=0;i<n;i++){
             if(s[i]=='('){
                 le++;
@@ -14,18 +15,15 @@ public class Solution {
                 else if(st>0) st--;
                 else return false;
             }
-        }
-        le=0;re=0;st=0;
-        for(int i=n-1;i>=0;i--){
-            if(s[i]==')'){
-                le++;
+            if(s[n-1-i]==')'){
+                rle++;
             }
-            else if(s[i]=='*'){
-                st++;
+            else if(s[n-1-i]=='*'){
+                rst++;
             }
             else {
-                if(le>0) le--;
-                else if(st>0) st--;
+                if(rle>0) rle--;
+                else if(rst>0) rst--;
                 else return false;
             }
         }
