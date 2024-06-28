@@ -1,22 +1,23 @@
-#define ll long long
 class Solution {
 public:
     long long maximumImportance(int n, vector<vector<int>>& roads) {
-        map<ll,ll> um;
-        for(ll i=0;i<roads.size();i++){
-            um[roads[i][0]]++;
-            um[roads[i][1]]++;
+        int occurrence[n];
+        for(int i = 0; i < n; i++)
+        {
+            occurrence[i] = 0;
         }
-        ll s=0;
-        vector<ll> yo;
-        for(auto it:um){
-            yo.push_back(it.second);
+        for(int i = 0; i < roads.size(); i++)
+        {
+            occurrence[roads[i][0]]++;
+            occurrence[roads[i][1]]++;
         }
-        sort(yo.begin(),yo.end(),greater<ll>());
-        for(ll i=0;i<yo.size();i++){
-            s+=yo[i]*n;
-            n--;
+        sort(occurrence, occurrence + n, greater<int>());
+
+        long long maxImportance = 0;
+        for (int i = 0; i < n; i++) {
+            maxImportance += (long long)occurrence[i] * (n - i);
         }
-        return s;
+
+        return maxImportance;
     }
 };
